@@ -25,7 +25,7 @@ From this data we get just the unique Alma IDs for the matchign physical records
 
 ## Title matching
 
-Given that not all electronic records have ISBNs (or the correct ISBNs) you can also analyse for duplicates based on title. As many electronic record are catalogued differenently titles may be slightly different.  We cater for this siutation by stripping all punctional, extra formatting and lower case the result then checking against only the first 50 characters
+Given that not all electronic records have ISBNs (or the correct ISBNs) you can also analyse for duplicates based on title. As many electronic record are catalogued differenently titles may be slightly different.  We cater for this siutation by stripping all punctional, extra formatting and lower case the result then checking against only the first 50 characters. Also to narrow the results we are excluding records that already match on ISBN.
 
 Here is a sample result
 
@@ -49,6 +49,8 @@ ISBN matches are very likely to be exactly the same record in a different format
 Titles matches are far less likely to be exactly the same item in a different format - as many titles are generically worded (Accoutning, Java, etc..) or names the same - which leads to non-accurate matches.
 
 Assume that only 20% or so of the title matches are actually the same
+
+Note: Titles matching excludes records where their ISBNs match - the title matching records complement the ISBN matching results.
 
 ## ExLirbis Alma 
 
