@@ -2,7 +2,7 @@
 
 Want to find out how many physical books you have in ExLibris Alma that you also have electronic versions of? Then this is for you.
 
-This application analyses the MARCXML files from ExLibris Alma to find out duplicates in your holdings based on ISBN and also by title.
+This application analyses the MARCXML files from ExLibris Alma to find the overlap of your physical and electronic records in your holdings based on ISBN and also by title.
 
 It outputs files that can be imported into ExLibris Alma as sets.
 
@@ -21,11 +21,11 @@ Here is a small sample of records where ISBNs are the same
 | 9914633230001361 |       7144033 |       7144033 | manufacturing planning and control systems for supply chain management  | manufacturing planning and control systems for supply chain management fifth edition |
 | 9914633350001361 | 9781849691086 | 9781849691086 | iphone javascript cookbook                                              | iphone javascript cookbook                                                           |
 
-From this data we get just the unique Alma IDs for the matchign physical records and export the results to a file that ExLibris Alma can import as a set.
+From this data we get just the unique Alma IDs for the matching physical records and export the results to a file that ExLibris Alma can import as a set.
 
 ## Title matching
 
-Given that not all electronic records have ISBNs (or the correct ISBNs) you can also analyse for duplicates based on title. As many electronic record are catalogued differenently titles may be slightly different.  We cater for this siutation by stripping all punctional, extra formatting and lower case the result then checking against only the first 50 characters. Also to narrow the results we are excluding records that already match on ISBN.
+Given that not all electronic records have ISBNs (or the correct ISBNs) you can also analyse for duplicates based on title. As many electronic record are catalogued differently, titles may be slightly different.  We cater for this siutation by stripping all punctional, extra formatting and lower case the result then checking against only the first 50 characters. Also to narrow the results we are excluding records that already match on ISBN.
 
 Here is a sample result
 
@@ -42,13 +42,13 @@ Here is a sample result
 | 9914833850001361|9914988860001361|as time goes by |as time goes by|
 | 9914834330001361|9915002000001361|software architecture |software architecture|
 
-Again these result can be exported into a format the ExLibrs Alma can import as a set.
+Again these results can be exported into a format the ExLibrs Alma can import as a set.
 
 ISBN matches are very likely to be exactly the same record in a different format.
 
-Titles matches are far less likely to be exactly the same item in a different format - as many titles are generically worded (Accoutning, Java, etc..) or names the same - which leads to non-accurate matches.
+Titles matches are far less likely to be exactly the same item in a different format - as many titles are generically worded  or named the same - which leads to non-accurate matches.
 
-Assume that only 20% or so of the title matches are actually the same
+Assume that only 20% or less of the title matches are actually the same
 
 Note: Titles matching excludes records where their ISBNs match - the title matching records complement the ISBN matching results.
 
@@ -59,6 +59,9 @@ To analyse the ExLibris Alma data we first need to get full outputs files from A
 To do this 
 
 ## MySQL Database
+
+On your MySQL server create a new blank database and import the  [database_setup.sql](https://github.com/justinkelly/Alma-title-match/blob/master/database_setup.sql) file
+- or just copy and paste the contents of the file into your MySQL query console to execute
 
 ## Config
 
@@ -101,8 +104,8 @@ To import the electronic records run
 ```
 perl import_xml_to_mysql.pl 'electronic' 'electronic' > output_electronic.txt
 ```
-Note: the first argument 'electronic' records into the Database the type of iles
-the second argument 'electonic' define the directory that stores the MARCXML files for the electronic records.
+Note: the first argument 'electronic' records into the Database the type of files
+the second argument 'electronic' define the directory that stores the MARCXML files for the electronic records.
 
 These 2 script convert all the MARCXML files in the specified directories into your MySQL database.
 
