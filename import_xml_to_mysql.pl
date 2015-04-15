@@ -1,9 +1,5 @@
 #!/usr/bin/perl
 
-# Script to illustrate how to parse a simple XML file
-# and pick out all the values for a specific element, in
-# this case all the titles.
-
 use strict;
 use XML::Simple;
 use Data::Dumper;
