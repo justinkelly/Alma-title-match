@@ -44,6 +44,17 @@ Here is a sample result
 
 Again these result can be exported into a format the ExLibrs Alma can import as a set.
 
+ISBN matches are very likely to be exactly the same record in a different format.
+
+Titles matches are far less likely to be exactly the same item in a different format - as many titles are generically worded (Accoutning, Java, etc..) or names the same - which leads to non-accurate matches.
+
+Assume that only 20% or so of the title matches are actually the same
+
+## ExLirbis Alma 
+
+To analyse the ExLibris Alma data we first need to get full outputs files from Alma of all the physical and electronic records.
+
+To do this 
 
 ## MySQL Database
 
@@ -60,4 +71,29 @@ my $database_password = "";
 my $database_port = "3306";
 ```
 
+## Perl and Linux
 
+## Overlap queries
+
+### ISBN matching
+
+This is a query to get a sample of your results with titles, alma id and isbns so can you review the results to ensire that they are accurate
+
+```
+select distinct overlap_physical.alma_id, overlap_physical.isbn, overlap_electronic.isbn , overlap_physical.title , overlap_electronic.title  from overlap_physical INNER JOIN overlap_electronic ON overlap_physical.isbn = overlap_electronic.isbn limit 20;
+```
+
+Once you're happy with the reulst run this query to output a list of uniqeue Alma IDs of physical records that also have electronic copies
+
+```
+select distinct overlap_physical.alma_id from overlap_physical INNER JOIN overlap_electronic ON overlap_physical.isbn = overlap_electronic.isbn ;
+```
+
+
+### Title matching query
+
+This output a csv file to /tmp called alma_titles.csv
+
+```
+SELECT DISTINCT overlap_physical.alma_id as p_alma_id, overlap_electronic.alma_id as e_alma_id, overlap_physical.title as p_title, overlap_electronic.title as e_title from overlap_physical, overlap_electronic where LEFT(overlap_physical.title,50) = LEFT(overlap_electronic.title,50) AND overlap_physical.isbn != overlap_electronic.isbn AND overlap_physical.alma_id NOT IN  (  select overlap_overlap.alma_id from overlap_overlap)  INTO OUTFILE '/tmp/alma_titles.csv' FIELDS TERMINATED BY ',';
+```
