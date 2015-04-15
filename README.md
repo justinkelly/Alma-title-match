@@ -80,20 +80,70 @@ my $database_port = "3306";
 This is a query to get a sample of your results with titles, alma id and isbns so can you review the results to ensire that they are accurate
 
 ```
-select distinct overlap_physical.alma_id, overlap_physical.isbn, overlap_electronic.isbn , overlap_physical.title , overlap_electronic.title  from overlap_physical INNER JOIN overlap_electronic ON overlap_physical.isbn = overlap_electronic.isbn limit 20;
+select 
+  distinct 
+    overlap_physical.alma_id, 
+    overlap_physical.isbn, 
+    overlap_electronic.isbn, 
+    overlap_physical.title, 
+    overlap_electronic.title  
+from 
+  overlap_physical 
+    INNER JOIN 
+    overlap_electronic ON overlap_physical.isbn = overlap_electronic.isbn
+limit 20;
 ```
+#### Save the matchign ISBNs to a CSV file (for Alma)
 
 Once you're happy with the reulst run this query to output a list of uniqeue Alma IDs of physical records that also have electronic copies
 
 ```
-select distinct overlap_physical.alma_id from overlap_physical INNER JOIN overlap_electronic ON overlap_physical.isbn = overlap_electronic.isbn ;
+select 
+  distinct 
+    overlap_physical.alma_id 
+from 
+  overlap_physical 
+    INNER JOIN 
+    overlap_electronic ON overlap_physical.isbn = overlap_electronic.isbn 
+INTO OUTFILE '/tmp/alma_isbn.csv' FIELDS TERMINATED BY ',';
 ```
 
+#### Save the matchign ISBNs to a separate table
+
+Run this query to save the matching ISBNs into a separate table - this is to speed up the title matching queries in the next section
+
+```
+insert 
+  into 
+  overlap_overlap (alma_id)  
+    select 
+      DISTINCT 
+        overlap_physical.alma_id 
+    from
+      overlap_physical 
+      INNER JOIN 
+        overlap_electronic ON overlap_physical.isbn = overlap_electronic.isbn ;
+```
 
 ### Title matching query
 
 This output a csv file to /tmp called alma_titles.csv
 
 ```
-SELECT DISTINCT overlap_physical.alma_id as p_alma_id, overlap_electronic.alma_id as e_alma_id, overlap_physical.title as p_title, overlap_electronic.title as e_title from overlap_physical, overlap_electronic where LEFT(overlap_physical.title,50) = LEFT(overlap_electronic.title,50) AND overlap_physical.isbn != overlap_electronic.isbn AND overlap_physical.alma_id NOT IN  (  select overlap_overlap.alma_id from overlap_overlap)  INTO OUTFILE '/tmp/alma_titles.csv' FIELDS TERMINATED BY ',';
+SELECT 
+  DISTINCT 
+    overlap_physical.alma_id as p_alma_id, 
+    overlap_electronic.alma_id as e_alma_id, 
+    overlap_physical.title as p_title,
+    overlap_electronic.title as e_title 
+from 
+  overlap_physical, 
+  overlap_electronic 
+where 
+  LEFT(overlap_physical.title,50) = LEFT(overlap_electronic.title,50)
+  AND 
+    overlap_physical.isbn != overlap_electronic.isbn 
+  AND 
+    overlap_physical.alma_id NOT IN  (select overlap_overlap.alma_id from overlap_overlap)
+  INTO OUTFILE '/tmp/alma_titles.csv' FIELDS TERMINATED BY ',';
 ```
