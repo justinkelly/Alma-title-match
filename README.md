@@ -1,6 +1,6 @@
 # ExLibris Alma - phyiscal and electronic overlap analysis
 
-Want to find out how many physical books you have in ExLibris Alma that you also have electronic versions of? Then this is for you.
+Want to find out how many physical books you have in ExLibris Alma that you also have electronic versions of? If so then this is for you.
 
 This application analyses the MARCXML files from ExLibris Alma to find the overlap of your physical and electronic records in your holdings based on ISBN and also by title.
 
@@ -8,7 +8,7 @@ It outputs files that can be imported into ExLibris Alma as sets.
 
 ## ISBN matching
 
-In ExLibris Alma a single record may have multiple ISBNs, this application normalises the Alma data based on ISBN allowing to matching against all ISBN of phyiscal records against all ISBNs of electronic records.
+In ExLibris Alma a single record may have multiple ISBNs, this application normalises the Alma data based on ISBN allowing for the matching of against all ISBN of phyiscal records against all ISBNs of electronic records.
 
 Here is a small sample of records where ISBNs are the same
 
