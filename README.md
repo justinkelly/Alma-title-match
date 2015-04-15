@@ -57,6 +57,12 @@ Note: Titles matching excludes records where their ISBNs match - the title match
 To analyse the ExLibris Alma data we first need to get full outputs files from Alma of all the physical and electronic records.
 
 To do this 
+...
+
+Once you have all the MARCXML files for both the electronic and print records save them into the folders on your server/workstation where you'll run this script
+
+Save the electronic records into a folder called 'electronic' 
+and physical records into a folder called 'print'
 
 ## MySQL Database
 
