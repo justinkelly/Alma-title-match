@@ -145,6 +145,8 @@ from
 INTO OUTFILE '/tmp/alma_isbn.csv' FIELDS TERMINATED BY ',';
 ```
 
+This CSV file can be saved in Excel as .xls or .xlsx and import into Alma as a set for further analyses.
+
 #### Save the matchign ISBNs to a separate table
 
 Run this query to save the matching ISBNs into a separate table - this is to speed up the title matching queries in the next section
@@ -184,3 +186,5 @@ where
     overlap_physical.alma_id NOT IN  (select overlap_overlap.alma_id from overlap_overlap)
   INTO OUTFILE '/tmp/alma_titles.csv' FIELDS TERMINATED BY ',';
 ```
+
+Again this CSV file can be saved in Excel as .xls or .xlsx and import into Alma as a set for further analyses.
