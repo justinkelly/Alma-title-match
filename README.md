@@ -73,6 +73,41 @@ my $database_port = "3306";
 
 ## Perl and Linux
 
+This import script is written in Perl, please ensure you have the below Perl modules installed on your system
+
+* XML::Simple
+* Data::Dumper
+* DBI
+
+The script runs best on a Linux type system, it just needs Perl, the above Perl modules, and MySQL client software installed to run.
+
+## Import the MARCXML files to MySQL
+
+Once you have edited the import file to add int he MySQL connection details run the import script over the MARCXML files to convert MARCXML to MySQL
+
+In the difrectory where you have the import script and MARCXML files to import the phyiscal records run
+
+Note: the first argument 'physical' records into the Database the type of iles
+the second argument 'print' define the directory that stores the MARCXML files for the physical/print records.
+
+```
+perl import_xml_to_mysql.pl 'physical' 'print' > outpul_physical.txt
+```
+
+To import the electronic records run
+
+```
+perl import_xml_to_mysql.pl 'electronic' 'electronic' > output_electronic.txt
+```
+Note: the first argument 'electronic' records into the Database the type of iles
+the second argument 'electonic' define the directory that stores the MARCXML files for the electronic records.
+
+These 2 script convert all the MARCXML files in the specified directories into your MySQL database.
+
+Both imports can take a number of hours based on the number of records and type of server.
+
+Once done we can analyse the data use SQL.
+
 ## Overlap queries
 
 ### ISBN matching
