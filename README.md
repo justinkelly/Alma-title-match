@@ -143,6 +143,17 @@ from
     overlap_electronic ON overlap_physical.isbn = overlap_electronic.isbn
 limit 20;
 ```
+
+
+| Alma ID (physical)          | ISBN (physical)           | ISBN (electronic)          | Title (physcial)       | Title (electronic)        |
+|------------------|---------------|---------------|-------------|--------------|
+| 9914634010001361 | 9780123820204 | 9780123820204 | database modeling and design                                            | database modeling and design                                                         |
+| 9914634010001361 |     123820200 |     123820200 | database modeling and design                                            | database modeling and design                                                         |
+| 9914632440001361 |     871706865 |     871706865 | titanium                                                                | titanium                                                                             |
+
+
+
+
 #### Save the matchign ISBNs to a CSV file (for Alma)
 
 Once you're happy with the reulst run this query to output a list of uniqeue Alma IDs of physical records that also have electronic copies
@@ -157,6 +168,12 @@ from
     overlap_electronic ON overlap_physical.isbn = overlap_electronic.isbn 
 INTO OUTFILE '/tmp/alma_isbn.csv' FIELDS TERMINATED BY ',';
 ```
+
+Here is a sample result 
+| Alma ID (physical)   |
+|------------------|
+| 9914634010001361 |
+| 9914632440001361 |  
 
 This CSV file can be saved in Excel as .xls or .xlsx and import into Alma as a set for further analyses.
 
@@ -199,5 +216,13 @@ where
     overlap_physical.alma_id NOT IN  (select overlap_overlap.alma_id from overlap_overlap)
   INTO OUTFILE '/tmp/alma_titles.csv' FIELDS TERMINATED BY ',';
 ```
+
+Here is a sample result
+
+| Alma ID (physical) | Alma ID (electronic) | Title (physial) | Title (electronic)|
+|--------------------|----------------------|-----------------|-------------------|
+| 9914706280001361 | 99333124301361|managing people |managing people|
+| 9914727370001361 |99333124301361|managing people |managing people|
+| 9914845200001361 |99333439301361|software engineering |software engineering|
 
 Again this CSV file can be saved in Excel as .xls or .xlsx and import into Alma as a set for further analyses.
