@@ -144,6 +144,7 @@ from
 limit 20;
 ```
 
+Heres is a sample result
 
 | Alma ID (physical)          | ISBN (physical)           | ISBN (electronic)          | Title (physcial)       | Title (electronic)        |
 |------------------|---------------|---------------|-------------|--------------|
@@ -169,8 +170,9 @@ from
 INTO OUTFILE '/tmp/alma_isbn.csv' FIELDS TERMINATED BY ',';
 ```
 
-Here is a sample result 
-| Alma ID (physical)   |
+Here is a sample result , note that only unique Alma IDs are selected - there are no duplicates - unlike the previos tseting query
+
+| Alma ID (physical) |
 |------------------|
 | 9914634010001361 |
 | 9914632440001361 |  
