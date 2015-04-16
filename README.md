@@ -59,11 +59,15 @@ To analyse the ExLibris Alma data we first need to get full outputs files from A
 To do this 
 ...
 
+
+
 Once you have all the MARCXML files for both the electronic and print records save them into the folders on your server/workstation where you'll run this script
 
 Save the electronic records into a folder called 'electronic' 
 and physical records into a folder called 'print'
 
+Here is a screenshot of how i've stored the MARCXML files
+![](https://457e801a8dceff4f14fee686917b28b7570650e8.googledrive.com/host/0B3qPjbk9su5uT0pQdVhVYXVUbEk/Blog/2015-Alma-title-match.png)
 ## MySQL Database
 
 On your MySQL server create a new blank database and import the  [database_setup.sql](https://github.com/justinkelly/Alma-title-match/blob/master/database_setup.sql) file
