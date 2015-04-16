@@ -127,7 +127,7 @@ Once done we can analyse the data use SQL.
 
 ### ISBN matching
 
-This is a query to get a sample of your results with titles, alma id and isbns so can you review the results to ensire that they are accurate
+This is a query to get a sample of your results with titles, Alma ID and ISBNs so can you review the results to ensure that they are accurate
 
 ```
 select 
@@ -157,7 +157,7 @@ Heres is a sample result
 
 #### Save the matchign ISBNs to a CSV file (for Alma)
 
-Once you're happy with the reulst run this query to output a list of uniqeue Alma IDs of physical records that also have electronic copies
+Once you're happy with the results run this query to output a list of unique Alma IDs of physical records that also have electronic copies
 
 ```
 select 
@@ -197,6 +197,8 @@ insert
 ```
 
 ### Title matching query
+
+To match electronic and physical title by not - where they have not already been matched on ISBN in the previous query - run the below query.
 
 This output a csv file to /tmp called alma_titles.csv
 
