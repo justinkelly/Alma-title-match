@@ -60,11 +60,11 @@ To do this create an ALma set for physical books
 
 ![](https://457e801a8dceff4f14fee686917b28b7570650e8.googledrive.com/host/0B3qPjbk9su5uT0pQdVhVYXVUbEk/Blog/2015-Alma-export-books.png)
 
-And and Alma set for electronic books
+Create an Alma set for electronic books
 
 ![](https://457e801a8dceff4f14fee686917b28b7570650e8.googledrive.com/host/0B3qPjbk9su5uT0pQdVhVYXVUbEk/Blog/2015-Alma-export-ebooks.png)
 
-Then for each set, run a job to export 
+Then for each set, run a job to export the records
 
 ![](https://457e801a8dceff4f14fee686917b28b7570650e8.googledrive.com/host/0B3qPjbk9su5uT0pQdVhVYXVUbEk/Blog/2015-Alma-export-step-1.png)
 
