@@ -56,21 +56,20 @@ Note: Titles matching excludes records where their ISBNs match - the title match
 
 To analyse the ExLibris Alma data we first need to get full outputs files from Alma of all the physical and electronic records.
 
-To do this 
-...
+To do this create an ALma set for physical books
 
-Export physical books as a set
 ![](https://457e801a8dceff4f14fee686917b28b7570650e8.googledrive.com/host/0B3qPjbk9su5uT0pQdVhVYXVUbEk/Blog/2015-Alma-export-books.png)
 
-Export electronic books as a set
+And and Alma set for electronic books
+
 ![](https://457e801a8dceff4f14fee686917b28b7570650e8.googledrive.com/host/0B3qPjbk9su5uT0pQdVhVYXVUbEk/Blog/2015-Alma-export-ebooks.png)
 
+Then for each set, run a job to export 
 
 ![](https://457e801a8dceff4f14fee686917b28b7570650e8.googledrive.com/host/0B3qPjbk9su5uT0pQdVhVYXVUbEk/Blog/2015-Alma-export-step-1.png)
 
+Select MARC21 XML as the output format, select 10,000 as the number of records in a file and select your FTP server
 ![](https://457e801a8dceff4f14fee686917b28b7570650e8.googledrive.com/host/0B3qPjbk9su5uT0pQdVhVYXVUbEk/Blog/2015-Alma-export-step-2.png)
-
-
 
 Once you have all the MARCXML files for both the electronic and print records save them into the folders on your server/workstation where you'll run this script
 
@@ -79,6 +78,7 @@ and physical records into a folder called 'print'
 
 Here is a screenshot of how i've stored the MARCXML files
 ![](https://457e801a8dceff4f14fee686917b28b7570650e8.googledrive.com/host/0B3qPjbk9su5uT0pQdVhVYXVUbEk/Blog/2015-Alma-title-match.png)
+
 ## MySQL Database
 
 On your MySQL server create a new blank database and import the  [database_setup.sql](https://github.com/justinkelly/Alma-title-match/blob/master/database_setup.sql) file
@@ -111,7 +111,7 @@ The script runs best on a Linux type system, it just needs Perl, the above Perl 
 
 Once you have edited the import file to add int he MySQL connection details run the import script over the MARCXML files to convert MARCXML to MySQL
 
-In the difrectory where you have the import script and MARCXML files to import the phyiscal records run
+In the directory where you have the import script and MARCXML files to import the phyiscal records run
 
 Note: the first argument 'physical' records into the Database the type of iles
 the second argument 'print' define the directory that stores the MARCXML files for the physical/print records.
@@ -119,14 +119,18 @@ the second argument 'print' define the directory that stores the MARCXML files f
 ```
 perl import_xml_to_mysql.pl 'physical' 'print' > outpul_physical.txt
 ```
+This will take a number of hours, you can tail the output_physical.txt file to monitor the progress
 
 To import the electronic records run
 
 ```
 perl import_xml_to_mysql.pl 'electronic' 'electronic' > output_electronic.txt
 ```
+
 Note: the first argument 'electronic' records into the Database the type of files
 the second argument 'electronic' define the directory that stores the MARCXML files for the electronic records.
+
+This will take a number of hours, you can tail the output_electronic.txt file to monitor the progress
 
 These 2 script convert all the MARCXML files in the specified directories into your MySQL database.
 
