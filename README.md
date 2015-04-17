@@ -59,6 +59,17 @@ To analyse the ExLibris Alma data we first need to get full outputs files from A
 To do this 
 ...
 
+Export physical books as a set
+![](https://457e801a8dceff4f14fee686917b28b7570650e8.googledrive.com/host/0B3qPjbk9su5uT0pQdVhVYXVUbEk/Blog/2015-Alma-export-books.png)
+
+Export electronic books as a set
+![](https://457e801a8dceff4f14fee686917b28b7570650e8.googledrive.com/host/0B3qPjbk9su5uT0pQdVhVYXVUbEk/Blog/2015-Alma-export-ebooks.png)
+
+
+![](https://457e801a8dceff4f14fee686917b28b7570650e8.googledrive.com/host/0B3qPjbk9su5uT0pQdVhVYXVUbEk/Blog/2015-Alma-export-step-1.png)
+
+![](https://457e801a8dceff4f14fee686917b28b7570650e8.googledrive.com/host/0B3qPjbk9su5uT0pQdVhVYXVUbEk/Blog/2015-Alma-export-step-2.png)
+
 
 
 Once you have all the MARCXML files for both the electronic and print records save them into the folders on your server/workstation where you'll run this script
